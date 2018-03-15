@@ -27,37 +27,25 @@ const external = [
   ...Object.keys(packageJson.devDependencies)
 ]
 
-export default [
-  {
-    external,
-    input: 'src/index.js',
-    output: {
-      file: './lib/components.js',
-      format: 'cjs',
-      intro: "require('./components.css');"
-    },
-    plugins: [
-      commonjs({ exclude: 'src/**' }),
-      nodeResolve(),
-      url(),
-      postcss({
-        extract: true,
-        loaders: [sassLoader],
-        modules: true,
-        plugins: [autoprefixer]
-      }),
-      babel(babelOpts)
-    ],
-    sourcemap: true
+export default {
+  external,
+  input: 'src/edge-login-ui-index.js',
+  output: {
+    file: packageJson.main,
+    format: 'cjs',
+    intro: "require('./edge-login-ui-index.css');"
   },
-  {
-    external,
-    input: './src/abcui.js',
-    output: [
-      { file: packageJson.main, format: 'cjs' },
-      { file: packageJson.module, format: 'es' }
-    ],
-    plugins: [babel(babelOpts)],
-    sourcemap: true
-  }
-]
+  plugins: [
+    commonjs({ exclude: 'src/**' }),
+    nodeResolve(),
+    url(),
+    postcss({
+      extract: true,
+      loaders: [sassLoader],
+      modules: true,
+      plugins: [autoprefixer]
+    }),
+    babel(babelOpts)
+  ],
+  sourcemap: true
+}

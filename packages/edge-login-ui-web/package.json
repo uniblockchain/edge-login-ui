@@ -18,14 +18,13 @@
     "assets/**",
     "lib/**"
   ],
-  "main": "lib/abcui.cjs.js",
-  "module": "lib/abcui.es6.js",
+  "main": "lib/edge-login-ui-index.js",
   "scripts": {
     "prebuild": "rimraf assets lib",
-    "build": "rollup -c && parcel build -d assets src/index.html",
+    "build": "rollup -c && parcel build -d assets src/demo/index.html",
     "prepare": "npm run build",
     "start": "npm-run-all -p start:*",
-    "start:parcel": "parcel -d assets src/index.html",
+    "start:parcel": "parcel -d assets src/demo/index.html",
     "start:rollup": "rollup -cw"
   },
   "dependencies": {
